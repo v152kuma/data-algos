@@ -49,4 +49,37 @@ public class BinaryTreeHeight {
      return max;
     }
 
+
+public int maxWidthOfBinaryTreeIncludingNullNodesInBetween(Node root){
+
+   if(root == null) return 0;
+
+    Queue<Pair<Node, Integer>> queue = new LinkedList<>();
+
+    queue.add(new Pair<>(root, 0);
+
+    int maxWidth = Integer.MIN_VALUE;
+    
+    while(!queue.isEmpty()){
+
+     int size = queue.size();
+     int leftmost = queue.peek().getValue();    
+     int rightmost = leftmost;
+
+     for(int i=0; i<size;i++)
+         {
+           Pair<Node, Integer> node = queue.poll();
+           Node curr = node.getKey();
+           Integer index = node.getValue();
+           rightmost = index;
+           if(curr.left!=null) queue.add(new Pair<>(curr.left, 2*index));
+           if(curr.right!=null) queue.add(new Pair<>(curr.right, 2*index+1));  
+         }
+
+        maxWidth = Math.max(maxWidth, rightmost-leftmost+1);
+    }
+    
+    return maxWidth;
+}
+   
 }
